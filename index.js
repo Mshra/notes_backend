@@ -51,7 +51,6 @@ app.delete('/api/notes/:id', (request, response) => {
 
 app.post('/api/notes', (request, response) => {
   const note = request.body
-  console.log(note)
   response.json(note)
 })
 
