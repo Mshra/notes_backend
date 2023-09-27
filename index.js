@@ -1,7 +1,8 @@
+require('dotenv').config()
 const express = require('express')
 const cors = require('cors')
 const app = express()
-const mongoose = require('mongoose')
+const Note = require('./models/note')
 
 app.use(express.json())
 app.use(cors())
@@ -24,18 +25,6 @@ let notes = [
     important: true
   }
 ]
-
-const url = `mongodb+srv://callmeaaryan:Kanye4Life@cluster0.vapqefz.mongodb.net/?retryWrites=true&w=majority`
-
-mongoose.set('strictQuery',false)
-mongoose.connect(url)
-
-const noteSchema = new mongoose.Schema({
-  content: String,
-  important: Boolean,
-})
-
-const Note = mongoose.model('Note', noteSchema)
 
 app.get('/', (request, response) => {
   response.send('<h1>Hello, World</h1>')
@@ -70,7 +59,7 @@ app.post('/api/notes', (request, response) => {
   response.json(note)
 })
 
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT
 app.listen(PORT, () => {
     console.log(`Server running on ${PORT}`)
 })
