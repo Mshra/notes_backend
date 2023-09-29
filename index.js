@@ -88,6 +88,9 @@ app.put('api/notes/:id', (request, response, next) => {
     .catch(error => next(error))
 })
 
+app.use(unknownEndpoint)
+app.use(errorHandler)
+
 const PORT = process.env.PORT
 app.listen(PORT, () => {
     console.log(`Server running on ${PORT}`)
