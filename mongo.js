@@ -27,14 +27,22 @@ const note = new Note({
 const note2 = new Note({
     content: "Mongoose makes use of mongo easy",
     important: true,
-}).save().then(mongoose.connection.close())
+})
 
 const note3 = new Note({
     content: "Callback-functions suck",
     important: true,
-}).save().then(mongoose.connection.close())
+})
 
 note.save().then(result => {
+    console.log('note saved')
+})
+
+note2.save().then(result => {
+    console.log('note saved')
+})
+
+note2.save().then(result => {
     console.log('note saved')
     mongoose.connection.close()
 })
